@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://tqq3gst8ik40"]
+
+[ext_resource type="Script" path="res://glowne/gracz_01.gd" id="1_qtsvr"]
+[ext_resource type="Texture2D" uid="uid://cbd14t7m6nwki" path="res://assety/gracz/legs_walk_0.png" id="1_rcyk7"]
+[ext_resource type="Texture2D" uid="uid://d2rk4yuihndsu" path="res://assety/gracz/legs_walk_1.png" id="2_eom71"]
+[ext_resource type="Texture2D" uid="uid://d0cg46v4xtth" path="res://assety/gracz/legs_walk_2.png" id="3_p0ykt"]
+[ext_resource type="Texture2D" uid="uid://bwhrml468a3wv" path="res://assety/gracz/legs_walk_3.png" id="4_gtb1p"]
+[ext_resource type="Texture2D" uid="uid://drnscfatbq0xt" path="res://assety/gracz/legs_walk_4.png" id="5_tfp74"]
+[ext_resource type="Texture2D" uid="uid://bui12ns7wl1v3" path="res://assety/gracz/legs_walk_5.png" id="6_5tmhs"]
+[ext_resource type="Texture2D" uid="uid://bxlbrhiev3yo6" path="res://assety/gracz/legs_walk_6.png" id="7_c2kiq"]
+[ext_resource type="Texture2D" uid="uid://c64xpji8b14vt" path="res://assety/gracz/legs_walk_7.png" id="8_uk3fn"]
+[ext_resource type="Texture2D" uid="uid://dh33f3k4e8rlw" path="res://assety/gracz/legs_stand.png" id="9_qffyt"]
+[ext_resource type="Texture2D" uid="uid://c716x6g0tdsog" path="res://assety/gracz/player1_torso.png" id="10_nub3b"]
+[ext_resource type="Texture2D" uid="uid://oe3c3tamkpwx" path="res://assety/gracz/player1_torso_shoot.png" id="11_e11cn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5ac4"]
+radius = 16.0
+height = 108.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpryr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rcyk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eom71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0ykt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gtb1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tfp74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5tmhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_c2kiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uk3fn")
+}],
+"loop": true,
+"name": &"chodzenie",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("6_5tmhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gtb1p")
+}],
+"loop": false,
+"name": &"skok",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_qffyt")
+}],
+"loop": true,
+"name": &"stanie",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1s4c4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_nub3b")
+}],
+"loop": true,
+"name": &"celowanie",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_e11cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nub3b")
+}],
+"loop": false,
+"name": &"strzal",
+"speed": 10.0
+}]
+
+[node name="Gracz01" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_qtsvr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_c5ac4")
+debug_color = Color(0, 0.6, 0.701961, 0.764706)
+
+[node name="nogi" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 25)
+sprite_frames = SubResource("SpriteFrames_wpryr")
+animation = &"stanie"
+
+[node name="tors" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -22)
+sprite_frames = SubResource("SpriteFrames_1s4c4")
+animation = &"celowanie"
+
+[node name="lufa" type="Marker2D" parent="."]
+position = Vector2(30, -33)
