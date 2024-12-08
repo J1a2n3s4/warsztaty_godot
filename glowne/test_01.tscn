@@ -1,16 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dajkbypweic75"]
+[gd_scene load_steps=5 format=3 uid="uid://dajkbypweic75"]
 
 [ext_resource type="PackedScene" uid="uid://tqq3gst8ik40" path="res://glowne/gracz_01.tscn" id="1_e6u2d"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vyyj4"]
+[ext_resource type="PackedScene" uid="uid://byureth4dtg4" path="res://glowne/gracz_02.tscn" id="2_5ct2r"]
+[ext_resource type="PackedScene" uid="uid://bv8dwyjlox78h" path="res://glowne/objekty_map/podloga_300.tscn" id="3_j81xf"]
+[ext_resource type="PackedScene" uid="uid://bwyu4mwin6d3r" path="res://glowne/objekty_map/podloga_1000.tscn" id="4_1qk15"]
 
 [node name="Test01" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(602, 650)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_vyyj4")
-
 [node name="Gracz01" parent="." instance=ExtResource("1_e6u2d")]
-position = Vector2(572, 360)
+position = Vector2(386, 206)
+
+[node name="Gracz02" parent="." instance=ExtResource("2_5ct2r")]
+position = Vector2(833, 94)
+
+[node name="Node2D" parent="." instance=ExtResource("3_j81xf")]
+position = Vector2(399, 312)
+
+[node name="Node2D2" parent="." instance=ExtResource("3_j81xf")]
+position = Vector2(795, 174)
+
+[node name="Node2D3" parent="." instance=ExtResource("4_1qk15")]
+position = Vector2(577, 491)

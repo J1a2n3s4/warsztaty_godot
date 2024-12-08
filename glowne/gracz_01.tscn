@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://tqq3gst8ik40"]
+[gd_scene load_steps=18 format=3 uid="uid://tqq3gst8ik40"]
 
 [ext_resource type="Script" path="res://glowne/gracz_01.gd" id="1_qtsvr"]
 [ext_resource type="Texture2D" uid="uid://cbd14t7m6nwki" path="res://assety/gracz/legs_walk_0.png" id="1_rcyk7"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://oe3c3tamkpwx" path="res://assety/gracz/player1_torso_shoot.png" id="11_e11cn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5ac4"]
-radius = 16.0
+radius = 18.0
 height = 108.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wpryr"]
@@ -90,6 +90,13 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uy5b3"]
+radius = 6.0
+height = 118.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_duoux"]
+radius = 54.0093
+
 [node name="Gracz01" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_qtsvr")
@@ -111,3 +118,27 @@ animation = &"celowanie"
 
 [node name="lufa" type="Marker2D" parent="."]
 position = Vector2(30, -33)
+
+[node name="StrefaPodlogi" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StrefaPodlogi"]
+position = Vector2(0, 51)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_uy5b3")
+debug_color = Color(0, 0.6, 0.701961, 0.133333)
+
+[node name="StrefaSufitu" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StrefaSufitu"]
+position = Vector2(0, -99)
+shape = SubResource("CircleShape2D_duoux")
+debug_color = Color(0, 0.6, 0.701961, 0.133333)
+
+[connection signal="area_entered" from="StrefaPodlogi" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="StrefaSufitu" to="." method="_on_strefa_sufitu_area_entered"]
