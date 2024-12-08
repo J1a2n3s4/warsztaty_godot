@@ -16,6 +16,8 @@ var aktualna_podloga : Area2D
 func _physics_process(delta):
 	if health <= 0:
 		queue_free()
+		$"../Camera2D".obu_zyje = false
+
 	if Input.is_action_pressed("right_01"):
 		nogi.flip_h = false
 		tors.flip_h = false
@@ -37,14 +39,14 @@ func _physics_process(delta):
 		kierunek = 0.0
 	if is_on_floor():
 		
-		velocity.x = lerp(velocity.x, kierunek*100, 7*delta)
+		velocity.x = lerp(velocity.x, kierunek*300, 7*delta)
 		
 		if Input.is_action_pressed("up_01"):
 			
-			velocity.y -= 500
+			velocity.y -= 1200
 	else:
 		nogi.play("skok")
-		velocity.y += 10
+		velocity.y += 30
 		
 	if Input.is_action_just_pressed("shoot_01"):
 		tors.play("strzal")
